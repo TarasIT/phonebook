@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
-import { useAppSelector, useAppDispatch } from "../../hooks/hook";
 import Notiflix from "notiflix";
+import { useAppSelector, useAppDispatch } from "../../hooks/hook";
 import { Loader } from "../Loader/Loader";
 import { errorReset } from "../../redux/auth/authSlice";
 import { regist } from "../../redux/auth/operations";
@@ -16,6 +16,8 @@ import {
   FormInput,
   Form,
   ShowPasswordBtn,
+  ShowPasswordIcon,
+  HidePasswordIcon,
 } from "../../styles/styled-components/Common.styled";
 
 export const RegistrationForm: FC = (): JSX.Element => {
@@ -32,9 +34,6 @@ export const RegistrationForm: FC = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const isLoading = useAppSelector(selectIsLoading);
   const error = useAppSelector(selectError);
-
-  const showPasswordImg = require("../../assets/images/opened-eye.png");
-  const hidePasswordImg = require("../../assets/images/closed-eye.png");
 
   useEffect(() => {
     if (error !== null) {
@@ -148,12 +147,7 @@ export const RegistrationForm: FC = (): JSX.Element => {
           }}
           onClick={() => setIsPasswordShown(!isPasswordShown)}
         >
-          <img
-            src={isPasswordShown ? showPasswordImg : hidePasswordImg}
-            alt={isPasswordShown ? "opened eye" : "closed eye"}
-            width="25"
-            height="25"
-          />
+          {isPasswordShown ? <ShowPasswordIcon /> : <HidePasswordIcon />}
         </ShowPasswordBtn>
       </InputBox>
       <Button type="submit">

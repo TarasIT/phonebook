@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 export const FormLabel = styled.label`
   position: absolute;
@@ -58,7 +59,7 @@ export const InputBox = styled.div`
 
 export const ShowPasswordBtn = styled.button`
   position: absolute;
-  bottom: 2.5px;
+  bottom: 2px;
   right: 5px;
   background: none;
   border: none;
@@ -71,6 +72,16 @@ export const ShowPasswordBtn = styled.button`
     cursor: pointer;
     opacity: 50%;
   }
+`;
+
+export const ShowPasswordIcon = styled(AiFillEye)`
+  width: 20px;
+  height: 20px;
+`;
+
+export const HidePasswordIcon = styled(AiFillEyeInvisible)`
+  width: 20px;
+  height: 20px;
 `;
 
 export const Button = styled.button`
