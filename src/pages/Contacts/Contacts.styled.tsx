@@ -5,6 +5,18 @@ export const Phonebook = styled.div`
   margin-right: auto;
   border-bottom: 1px solid;
   padding-top: 20px;
+  animation: slideInFromRight 1s ease;
+
+  @keyframes slideInFromRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 `;
 
 export const Title = styled.h1`
