@@ -2,7 +2,6 @@ import React, { FC, MouseEvent, useState } from "react";
 import { deleteContact } from "../../redux/contacts/operations";
 import { filterContacts } from "../../redux/contacts/filterSlice";
 import { selectContactsFilter } from "../../redux/contacts/selectors";
-import { selectIsLoading } from "../../redux/contacts/selectors";
 import { useAppDispatch, useAppSelector } from "../../hooks/hook";
 import { Contact } from "../../types/types";
 import { Loader } from "../Loader/Loader";
@@ -18,7 +17,6 @@ export const ContactItem: FC<Contact> = ({ name, id, number }): JSX.Element => {
   const [isContactDeleted, setIsContactDeleted] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const filter = useAppSelector(selectContactsFilter);
-  const isLoading = useAppSelector(selectIsLoading);
 
   const handleDeleteContact = (e: MouseEvent<HTMLButtonElement>) => {
     if (id === e.currentTarget.id) {
@@ -35,7 +33,7 @@ export const ContactItem: FC<Contact> = ({ name, id, number }): JSX.Element => {
         <Number>{number}</Number>
       </ContactInfo>
       <ContactDeleteBtn id={id} type="button" onClick={handleDeleteContact}>
-        {isLoading && isContactDeleted ? <Loader /> : "Delete"}
+        {isContactDeleted ? <Loader /> : "Delete"}
       </ContactDeleteBtn>
     </Item>
   );
