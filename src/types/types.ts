@@ -1,3 +1,11 @@
+export interface FormLabelProps {
+  isNameInputFocused?: boolean;
+  isEmailInputFocused?: boolean;
+  isPasswordInputFocused?: boolean;
+  isNumberInputFocused?: boolean;
+  isFindInputFocused?: boolean;
+}
+
 export interface Contact {
   id?: string;
   name: string;

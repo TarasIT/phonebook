@@ -1,15 +1,6 @@
 import styled, { css } from "styled-components";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
-
-export const FormLabel = styled.label`
-  position: absolute;
-  transition-property: top font-size;
-  transition-duration: 0.3s;
-  pointer-events: none;
-  left: 5px;
-  color: black;
-  font-weight: 500;
-`;
+import { FormLabelProps } from "../../types/types";
 
 export const Form = styled.form`
   display: flex;
@@ -21,6 +12,58 @@ export const Form = styled.form`
   border: 1px solid rgba(109, 107, 107, 0.2);
   box-shadow: 10px 10px 10px 10px rgba(109, 107, 107, 0.2);
   border-radius: 20px;
+
+  animation: slideInFromRight 1s ease;
+
+  @keyframes slideInFromRight {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+`;
+
+export const FormLabel = styled.label<FormLabelProps>`
+  position: absolute;
+  transition-property: transform font-size;
+  transition-duration: 0.3s;
+  pointer-events: none;
+  left: 5px;
+  color: black;
+  font-weight: 500;
+
+  transform: ${({
+    isNameInputFocused,
+    isEmailInputFocused,
+    isPasswordInputFocused,
+    isNumberInputFocused,
+    isFindInputFocused,
+  }) =>
+    isNameInputFocused ||
+    isEmailInputFocused ||
+    isPasswordInputFocused ||
+    isNumberInputFocused ||
+    isFindInputFocused
+      ? "translateY(-15px)"
+      : "translateY(5px)"};
+  font-size: ${({
+    isNameInputFocused,
+    isEmailInputFocused,
+    isPasswordInputFocused,
+    isNumberInputFocused,
+    isFindInputFocused,
+  }) =>
+    isNameInputFocused ||
+    isEmailInputFocused ||
+    isPasswordInputFocused ||
+    isNumberInputFocused ||
+    isFindInputFocused
+      ? "14px"
+      : "18px"};
 `;
 
 export const FormInput = styled.input`

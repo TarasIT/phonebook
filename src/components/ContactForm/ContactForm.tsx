@@ -6,18 +6,19 @@ import {
   selectContacts,
   selectIsLoading,
 } from "../../redux/contacts/selectors";
-import { Form, NameLabel, NumberLabel } from "./ContactForm.styled";
+import { Form } from "./ContactForm.styled";
 import { Loader } from "../Loader/Loader";
 import {
   Button,
   FormInput,
+  FormLabel,
   InputBox,
 } from "../../styles/styled-components/Common.styled";
 
 export const ContactForm: FC = (): JSX.Element => {
   const [name, setName] = useState<string>("");
   const [number, setNumber] = useState<string>("");
-  const [isContactAdded, setIsContactAdded] = useState<boolean>(false);
+  const [isContactAdding, setIsContactAdding] = useState<boolean>(false);
   const [isNameInputFocused, setIsNameInputFocused] = useState<boolean>(false);
   const [isNumberInputFocused, setIsNumberInputFocused] =
     useState<boolean>(false);
@@ -75,15 +76,14 @@ export const ContactForm: FC = (): JSX.Element => {
         }
       );
     }
-
-    setIsContactAdded(false);
+    setIsContactAdding(true);
     await dispatch(
       addContact({
         name: nameValue,
         number: numberValue,
       })
     );
-    setIsContactAdded(true);
+    setIsContactAdding(false);
     setName("");
     setNumber("");
     form.reset();
@@ -94,7 +94,7 @@ export const ContactForm: FC = (): JSX.Element => {
   return (
     <Form onSubmit={handleSubmit}>
       <InputBox>
-        <NameLabel isNameInputFocused={isNameInputFocused}>Name</NameLabel>
+        <FormLabel isNameInputFocused={isNameInputFocused}>Name</FormLabel>
         <FormInput
           type="text"
           name="name"
@@ -112,9 +112,9 @@ export const ContactForm: FC = (): JSX.Element => {
         />
       </InputBox>
       <InputBox>
-        <NumberLabel isNumberInputFocused={isNumberInputFocused}>
+        <FormLabel isNumberInputFocused={isNumberInputFocused}>
           Number
-        </NumberLabel>
+        </FormLabel>
         <FormInput
           type="tel"
           name="number"
@@ -134,7 +134,7 @@ export const ContactForm: FC = (): JSX.Element => {
         />
       </InputBox>
       <Button type="submit">
-        {!isContactAdded && isLoading ? <Loader /> : "Add contact"}
+        {isContactAdding && isLoading ? <Loader /> : "Add contact"}
       </Button>
     </Form>
   );

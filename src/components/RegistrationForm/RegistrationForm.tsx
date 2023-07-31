@@ -5,12 +5,7 @@ import { Loader } from "../Loader/Loader";
 import { errorReset } from "../../redux/auth/authSlice";
 import { regist } from "../../redux/auth/operations";
 import { selectError, selectIsLoading } from "../../redux/auth/selectors";
-import {
-  InputBox,
-  NameLabel,
-  EmailLabel,
-  PasswordLabel,
-} from "./RegistrationForm.styled";
+import { InputBox } from "./RegistrationForm.styled";
 import {
   Button,
   FormInput,
@@ -18,6 +13,7 @@ import {
   ShowPasswordBtn,
   ShowPasswordIcon,
   HidePasswordIcon,
+  FormLabel,
 } from "../../styles/styled-components/Common.styled";
 
 export const RegistrationForm: FC = (): JSX.Element => {
@@ -85,7 +81,7 @@ export const RegistrationForm: FC = (): JSX.Element => {
   return (
     <Form onSubmit={handleSubmit}>
       <InputBox>
-        <NameLabel isNameInputFocused={isNameInputFocused}>Name</NameLabel>
+        <FormLabel isNameInputFocused={isNameInputFocused}>Name</FormLabel>
         <FormInput
           type="text"
           name="name"
@@ -101,7 +97,7 @@ export const RegistrationForm: FC = (): JSX.Element => {
         />
       </InputBox>
       <InputBox>
-        <EmailLabel isEmailInputFocused={isEmailInputFocused}>Email</EmailLabel>
+        <FormLabel isEmailInputFocused={isEmailInputFocused}>Email</FormLabel>
         <FormInput
           type="email"
           name="email"
@@ -119,9 +115,9 @@ export const RegistrationForm: FC = (): JSX.Element => {
         />
       </InputBox>
       <InputBox>
-        <PasswordLabel isPasswordInputFocused={isPasswordInputFocused}>
+        <FormLabel isPasswordInputFocused={isPasswordInputFocused}>
           Password
-        </PasswordLabel>
+        </FormLabel>
         <FormInput
           type={isPasswordShown ? "text" : "password"}
           name="password"

@@ -1,10 +1,4 @@
 import styled, { css } from "styled-components";
-import { FormLabel } from "../../styles/styled-components/Common.styled";
-
-interface FormLabelProps {
-  isNameInputFocused?: boolean;
-  isNumberInputFocused?: boolean;
-}
 
 export const Form = styled.form`
   display: flex;
@@ -27,17 +21,4 @@ export const Form = styled.form`
       }
     }
   `}
-`;
-
-export const NameLabel = styled(FormLabel)<FormLabelProps>`
-  top: ${({ isNameInputFocused }) => (isNameInputFocused ? "-15px" : "5px")};
-  font-size: ${({ isNameInputFocused }) =>
-    isNameInputFocused ? "14px" : "18px"};
-`;
-
-export const NumberLabel = styled(FormLabel)<FormLabelProps>`
-  top: ${({ isNumberInputFocused }) =>
-    isNumberInputFocused ? "-15px" : "5px"};
-  font-size: ${({ isNumberInputFocused }) =>
-    isNumberInputFocused ? "14px" : "18px"};
 `;
