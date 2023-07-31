@@ -120,7 +120,7 @@ export const LoginForm: FC = (): JSX.Element => {
           }}
           onClick={() => setIsPasswordShown(!isPasswordShown)}
         >
-          {isPasswordShown ? <ShowPasswordIcon /> : <HidePasswordIcon />}
+          {isPasswordShown ? <HidePasswordIcon /> : <ShowPasswordIcon />}
         </ShowPasswordBtn>
       </InputBox>
       <Button type="submit">
