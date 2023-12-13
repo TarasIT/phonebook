@@ -15,6 +15,11 @@ import {
   HidePasswordIcon,
   FormLabel,
 } from "../../styles/styled-components/Common.styled";
+import { StyleSheetManager } from "styled-components";
+
+const shouldForwardProp = (prop: string) => {
+  return prop !== "isEmailInputFocused" && prop !== "isPasswordInputFocused";
+};
 
 export const LoginForm: FC = (): JSX.Element => {
   const [email, setEmail] = useState<string>("");
@@ -72,60 +77,62 @@ export const LoginForm: FC = (): JSX.Element => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <InputBox>
-        <FormLabel isEmailInputFocused={isEmailInputFocused}>Email</FormLabel>
-        <FormInput
-          type="email"
-          name="email"
-          onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            setEmail(e.target.value.trim());
-          }}
-          onFocus={() => setIsEmailInputFocused(true)}
-          onBlur={() => {
-            email
-              ? setIsEmailInputFocused(true)
-              : setIsEmailInputFocused(false);
-          }}
-          autoComplete="on"
-          required
-        />
-      </InputBox>
-      <InputBox>
-        <FormLabel isPasswordInputFocused={isPasswordInputFocused}>
-          Password
-        </FormLabel>
-        <FormInput
-          type={isPasswordShown ? "text" : "password"}
-          name="password"
-          onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            setPassword(e.target.value.trim());
-          }}
-          onFocus={() => setIsPasswordInputFocused(true)}
-          onBlur={() => {
-            password
-              ? setIsPasswordInputFocused(true)
-              : setIsPasswordInputFocused(false);
-          }}
-          autoComplete="on"
-          required
-        />
-        <ShowPasswordBtn
-          type="button"
-          onFocus={() => setIsPasswordInputFocused(true)}
-          onBlur={() => {
-            password
-              ? setIsPasswordInputFocused(true)
-              : setIsPasswordInputFocused(false);
-          }}
-          onClick={() => setIsPasswordShown(!isPasswordShown)}
-        >
-          {isPasswordShown ? <HidePasswordIcon /> : <ShowPasswordIcon />}
-        </ShowPasswordBtn>
-      </InputBox>
-      <Button type="submit">
-        {isLoading && !isUserLogIn ? <Loader /> : "Log In"}
-      </Button>
-    </Form>
+    <StyleSheetManager shouldForwardProp={shouldForwardProp}>
+      <Form onSubmit={handleSubmit}>
+        <InputBox>
+          <FormLabel isEmailInputFocused={isEmailInputFocused}>Email</FormLabel>
+          <FormInput
+            type="email"
+            name="email"
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setEmail(e.target.value.trim());
+            }}
+            onFocus={() => setIsEmailInputFocused(true)}
+            onBlur={() => {
+              email
+                ? setIsEmailInputFocused(true)
+                : setIsEmailInputFocused(false);
+            }}
+            autoComplete="on"
+            required
+          />
+        </InputBox>
+        <InputBox>
+          <FormLabel isPasswordInputFocused={isPasswordInputFocused}>
+            Password
+          </FormLabel>
+          <FormInput
+            type={isPasswordShown ? "text" : "password"}
+            name="password"
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setPassword(e.target.value.trim());
+            }}
+            onFocus={() => setIsPasswordInputFocused(true)}
+            onBlur={() => {
+              password
+                ? setIsPasswordInputFocused(true)
+                : setIsPasswordInputFocused(false);
+            }}
+            autoComplete="on"
+            required
+          />
+          <ShowPasswordBtn
+            type="button"
+            onFocus={() => setIsPasswordInputFocused(true)}
+            onBlur={() => {
+              password
+                ? setIsPasswordInputFocused(true)
+                : setIsPasswordInputFocused(false);
+            }}
+            onClick={() => setIsPasswordShown(!isPasswordShown)}
+          >
+            {isPasswordShown ? <HidePasswordIcon /> : <ShowPasswordIcon />}
+          </ShowPasswordBtn>
+        </InputBox>
+        <Button type="submit">
+          {isLoading && !isUserLogIn ? <Loader /> : "Log In"}
+        </Button>
+      </Form>
+    </StyleSheetManager>
   );
 };

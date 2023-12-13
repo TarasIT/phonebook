@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, FormEvent, useEffect, useState } from "react";
 import Notiflix from "notiflix";
+import { StyleSheetManager } from "styled-components";
 import { useAppSelector, useAppDispatch } from "../../hooks/hook";
 import { Loader } from "../Loader/Loader";
 import { errorReset } from "../../redux/auth/authSlice";
@@ -15,6 +16,14 @@ import {
   HidePasswordIcon,
   FormLabel,
 } from "../../styles/styled-components/Common.styled";
+
+const shouldForwardProp = (prop: string) => {
+  return (
+    prop !== "isNameInputFocused" &&
+    prop !== "isEmailInputFocused" &&
+    prop !== "isPasswordInputFocused"
+  );
+};
 
 export const RegistrationForm: FC = (): JSX.Element => {
   const [name, setName] = useState<string>("");
@@ -79,76 +88,78 @@ export const RegistrationForm: FC = (): JSX.Element => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <InputBox>
-        <FormLabel isNameInputFocused={isNameInputFocused}>Name</FormLabel>
-        <FormInput
-          type="text"
-          name="name"
-          onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            setName(e.target.value);
-          }}
-          onFocus={() => setIsNameInputFocused(true)}
-          onBlur={() => {
-            name ? setIsNameInputFocused(true) : setIsNameInputFocused(false);
-          }}
-          autoComplete="on"
-          required
-        />
-      </InputBox>
-      <InputBox>
-        <FormLabel isEmailInputFocused={isEmailInputFocused}>Email</FormLabel>
-        <FormInput
-          type="email"
-          name="email"
-          onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            setEmail(e.target.value);
-          }}
-          onFocus={() => setIsEmailInputFocused(true)}
-          onBlur={() => {
-            email
-              ? setIsEmailInputFocused(true)
-              : setIsEmailInputFocused(false);
-          }}
-          autoComplete="on"
-          required
-        />
-      </InputBox>
-      <InputBox>
-        <FormLabel isPasswordInputFocused={isPasswordInputFocused}>
-          Password
-        </FormLabel>
-        <FormInput
-          type={isPasswordShown ? "text" : "password"}
-          name="password"
-          onChange={(e: ChangeEvent<HTMLInputElement>) => {
-            setPassword(e.target.value);
-          }}
-          onFocus={() => setIsPasswordInputFocused(true)}
-          onBlur={() => {
-            password
-              ? setIsPasswordInputFocused(true)
-              : setIsPasswordInputFocused(false);
-          }}
-          autoComplete="on"
-          required
-        />
-        <ShowPasswordBtn
-          type="button"
-          onFocus={() => setIsPasswordInputFocused(true)}
-          onBlur={() => {
-            password
-              ? setIsPasswordInputFocused(true)
-              : setIsPasswordInputFocused(false);
-          }}
-          onClick={() => setIsPasswordShown(!isPasswordShown)}
-        >
-          {isPasswordShown ? <HidePasswordIcon /> : <ShowPasswordIcon />}
-        </ShowPasswordBtn>
-      </InputBox>
-      <Button type="submit">
-        {isLoading && !isUserRegist ? <Loader /> : "Regist"}
-      </Button>
-    </Form>
+    <StyleSheetManager shouldForwardProp={shouldForwardProp}>
+      <Form onSubmit={handleSubmit}>
+        <InputBox>
+          <FormLabel isNameInputFocused={isNameInputFocused}>Name</FormLabel>
+          <FormInput
+            type="text"
+            name="name"
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setName(e.target.value);
+            }}
+            onFocus={() => setIsNameInputFocused(true)}
+            onBlur={() => {
+              name ? setIsNameInputFocused(true) : setIsNameInputFocused(false);
+            }}
+            autoComplete="on"
+            required
+          />
+        </InputBox>
+        <InputBox>
+          <FormLabel isEmailInputFocused={isEmailInputFocused}>Email</FormLabel>
+          <FormInput
+            type="email"
+            name="email"
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setEmail(e.target.value);
+            }}
+            onFocus={() => setIsEmailInputFocused(true)}
+            onBlur={() => {
+              email
+                ? setIsEmailInputFocused(true)
+                : setIsEmailInputFocused(false);
+            }}
+            autoComplete="on"
+            required
+          />
+        </InputBox>
+        <InputBox>
+          <FormLabel isPasswordInputFocused={isPasswordInputFocused}>
+            Password
+          </FormLabel>
+          <FormInput
+            type={isPasswordShown ? "text" : "password"}
+            name="password"
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setPassword(e.target.value);
+            }}
+            onFocus={() => setIsPasswordInputFocused(true)}
+            onBlur={() => {
+              password
+                ? setIsPasswordInputFocused(true)
+                : setIsPasswordInputFocused(false);
+            }}
+            autoComplete="on"
+            required
+          />
+          <ShowPasswordBtn
+            type="button"
+            onFocus={() => setIsPasswordInputFocused(true)}
+            onBlur={() => {
+              password
+                ? setIsPasswordInputFocused(true)
+                : setIsPasswordInputFocused(false);
+            }}
+            onClick={() => setIsPasswordShown(!isPasswordShown)}
+          >
+            {isPasswordShown ? <HidePasswordIcon /> : <ShowPasswordIcon />}
+          </ShowPasswordBtn>
+        </InputBox>
+        <Button type="submit">
+          {isLoading && !isUserRegist ? <Loader /> : "Regist"}
+        </Button>
+      </Form>
+    </StyleSheetManager>
   );
 };

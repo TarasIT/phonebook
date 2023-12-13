@@ -1,6 +1,7 @@
 import React, { ChangeEvent, FC, FormEvent, useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../hooks/hook";
 import Notiflix from "notiflix";
+import { StyleSheetManager } from "styled-components";
 import { addContact } from "../../redux/contacts/operations";
 import {
   selectContacts,
@@ -14,6 +15,10 @@ import {
   FormLabel,
   InputBox,
 } from "../../styles/styled-components/Common.styled";
+
+const shouldForwardProp = (prop: string) => {
+  return prop !== "isNameInputFocused" && prop !== "isNumberInputFocused";
+};
 
 export const ContactForm: FC = (): JSX.Element => {
   const [name, setName] = useState<string>("");
@@ -92,50 +97,52 @@ export const ContactForm: FC = (): JSX.Element => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <InputBox>
-        <FormLabel isNameInputFocused={isNameInputFocused}>Name</FormLabel>
-        <FormInput
-          type="text"
-          name="name"
-          value={name}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setName(e.target.value.trim())
-          }
-          onFocus={() => setIsNameInputFocused(true)}
-          onBlur={() => {
-            name ? setIsNameInputFocused(true) : setIsNameInputFocused(false);
-          }}
-          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-          autoComplete="on"
-          required
-        />
-      </InputBox>
-      <InputBox>
-        <FormLabel isNumberInputFocused={isNumberInputFocused}>
-          Number
-        </FormLabel>
-        <FormInput
-          type="tel"
-          name="number"
-          value={number}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setNumber(e.target.value.trim())
-          }
-          onFocus={() => setIsNumberInputFocused(true)}
-          onBlur={() => {
-            number
-              ? setIsNumberInputFocused(true)
-              : setIsNumberInputFocused(false);
-          }}
-          title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-          autoComplete="on"
-          required
-        />
-      </InputBox>
-      <Button type="submit">
-        {isContactAdding && isLoading ? <Loader /> : "Add contact"}
-      </Button>
-    </Form>
+    <StyleSheetManager shouldForwardProp={shouldForwardProp}>
+      <Form onSubmit={handleSubmit}>
+        <InputBox>
+          <FormLabel isNameInputFocused={isNameInputFocused}>Name</FormLabel>
+          <FormInput
+            type="text"
+            name="name"
+            value={name}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setName(e.target.value.trim())
+            }
+            onFocus={() => setIsNameInputFocused(true)}
+            onBlur={() => {
+              name ? setIsNameInputFocused(true) : setIsNameInputFocused(false);
+            }}
+            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+            autoComplete="on"
+            required
+          />
+        </InputBox>
+        <InputBox>
+          <FormLabel isNumberInputFocused={isNumberInputFocused}>
+            Number
+          </FormLabel>
+          <FormInput
+            type="tel"
+            name="number"
+            value={number}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setNumber(e.target.value.trim())
+            }
+            onFocus={() => setIsNumberInputFocused(true)}
+            onBlur={() => {
+              number
+                ? setIsNumberInputFocused(true)
+                : setIsNumberInputFocused(false);
+            }}
+            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+            autoComplete="on"
+            required
+          />
+        </InputBox>
+        <Button type="submit">
+          {isContactAdding && isLoading ? <Loader /> : "Add contact"}
+        </Button>
+      </Form>
+    </StyleSheetManager>
   );
 };
