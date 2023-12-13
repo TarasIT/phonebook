@@ -9,7 +9,7 @@ const Home: FC = (): JSX.Element => {
   return (
     <HomePage>
       <Helmet>
-        <title>Home</title>
+        <title>Phonebook</title>
       </Helmet>
       <Title>
         Welcome to your personal phonebook!

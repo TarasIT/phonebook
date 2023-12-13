@@ -87,13 +87,7 @@ export const InputBox = styled.div`
   margin-bottom: 20px;
 
   ${css`
-    @media screen and (min-width: 768px) and (max-width: 899px) {
-      &:first-child {
-        margin-right: 20px;
-      }
-    }
-
-    @media screen and (min-width: 900px) {
+    @media screen and (min-width: 1200px) {
       margin-right: 20px;
       margin-bottom: 0;
     }

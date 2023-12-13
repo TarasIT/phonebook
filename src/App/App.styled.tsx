@@ -9,7 +9,12 @@ export const Container = styled.div`
   height: 100%;
 
   ${css`
-    @media screen and (min-width: 320px) and (max-width: 479px) {
+    @media screen and (max-width: 320px) {
+      & {
+        width: 320px;
+      }
+    }
+    @media screen and (max-width: 479px) {
       & {
         padding-left: 10px;
         padding-right: 10px;

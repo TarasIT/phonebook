@@ -10,14 +10,9 @@ export const Form = styled.form`
   margin-right: auto;
 
   ${css`
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 1199px) {
       & {
         width: 280px;
-      }
-    }
-    @media screen and (min-width: 768px) and (max-width: 900px) {
-      & {
-        width: 600px;
       }
     }
   `}

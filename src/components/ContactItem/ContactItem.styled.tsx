@@ -18,10 +18,6 @@ export const Item = styled.li`
     }
   `}
 
-  &:not(:last-child) {
-    margin-bottom: 15px;
-  }
-
   &:hover,
   &:focus {
     background-color: rgba(83, 140, 214, 0.5);
@@ -44,16 +40,10 @@ export const Name = styled.p`
 `;
 
 export const Number = styled.p`
-  padding-left: 10px;
+  padding-left: 0;
+  margin-bottom: 5px;
   font-size: 18px;
   font-weight: 500;
-
-  ${css`
-    @media screen and (max-width: 480px) {
-      padding-left: 0;
-      margin-bottom: 5px;
-    }
-  `}
 `;
 
 export const ContactDeleteBtn = styled.button`
@@ -67,7 +57,7 @@ export const ContactDeleteBtn = styled.button`
   transition-duration: 0.3s;
 
   ${css`
-    @media screen and (min-width: 480px) {
+    @media screen and (min-width: 479px) {
       margin-left: auto;
     }
   `}

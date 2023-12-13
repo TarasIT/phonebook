@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, FC, LazyExoticComponent } from "react";
 import { Route, Routes } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { PrivateRoute } from "../components/PrivateRoute";
 import { RestrictedRoute } from "../components/RestrictedRoute";
 import NotFoundPage from "../pages/NotFoundPage";
@@ -32,6 +33,12 @@ export const App: FC = (): JSX.Element => {
 
   return (
     <Container>
+      <Helmet>
+        <meta
+          name="description"
+          content="The Phonebook App is a React application that allows users to create and manage their phone contacts. Users can register, log in, create, read, find and delete operations on their contacts. The app is built with TypeScript, and the state management is handled by Redux Toolkit. Additionally, the app is styled using Styled Components."
+        />
+      </Helmet>
       <AppBar />
 
       {!isRefreshing && (

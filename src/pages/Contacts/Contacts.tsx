@@ -23,7 +23,7 @@ const ContactsPage: FC = (): JSX.Element => {
   return (
     <>
       <Helmet>
-        <title>Phonebook</title>
+        <title>Contacts</title>
       </Helmet>
       <Phonebook>
         <Title>Phonebook</Title>

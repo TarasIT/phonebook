@@ -106,7 +106,7 @@ export const ContactForm: FC = (): JSX.Element => {
             name="name"
             value={name}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setName(e.target.value.trim())
+              setName(e.target.value)
             }
             onFocus={() => setIsNameInputFocused(true)}
             onBlur={() => {
@@ -126,7 +126,7 @@ export const ContactForm: FC = (): JSX.Element => {
             name="number"
             value={number}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setNumber(e.target.value.trim())
+              setNumber(e.target.value)
             }
             onFocus={() => setIsNumberInputFocused(true)}
             onBlur={() => {

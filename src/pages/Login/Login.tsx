@@ -7,7 +7,7 @@ const Login: FC = (): JSX.Element => {
   return (
     <LoginPage>
       <Helmet>
-        <title>Login</title>
+        <title>Login on Phonebook</title>
       </Helmet>
       <LoginForm />
     </LoginPage>

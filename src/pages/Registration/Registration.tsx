@@ -7,7 +7,7 @@ const Regist: FC = (): JSX.Element => {
   return (
     <RegistrationPage>
       <Helmet>
-        <title>Registration</title>
+        <title>Registration on Phonebook</title>
       </Helmet>
       <RegistrationForm />
     </RegistrationPage>
