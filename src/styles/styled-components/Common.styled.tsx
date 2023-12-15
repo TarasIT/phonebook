@@ -13,7 +13,7 @@ export const Form = styled.form`
   box-shadow: 10px 10px 10px 10px rgba(109, 107, 107, 0.2);
   border-radius: 20px;
 
-  animation: slideInFromRight 1s ease;
+  animation: slideInFromRight 0.5s ease;
 
   @keyframes slideInFromRight {
     0% {

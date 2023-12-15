@@ -29,7 +29,7 @@ export const Title = styled.h1`
   }
 
   ${css`
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 767px) {
       font-size: 30px;
     }
   `}
