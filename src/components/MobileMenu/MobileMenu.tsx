@@ -57,7 +57,7 @@ export const MobileMenu: FC<MobileMenuProps> = ({
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        <CloseBtn type="button" onClick={onClose} />
+        <CloseBtn onClick={onClose} />
         {children}
       </MobileMenuContainer>
     </MobileMenuOverlay>,

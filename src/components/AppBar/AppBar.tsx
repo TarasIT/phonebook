@@ -28,9 +28,7 @@ export const AppBar: FC = (): JSX.Element => {
   return (
     <StyleSheetManager shouldForwardProp={shouldForwardProp}>
       <Header screenWidth={screenWidth}>
-        {screenWidth < 768 && (
-          <OpenMenuBtn type="button" onClick={openMobileMenu} />
-        )}
+        {screenWidth < 768 && <OpenMenuBtn onClick={openMobileMenu} />}
 
         {screenWidth < 768 ? (
           <MobileMenu isOpen={isMobileMenuOpen} onClose={closeMobileMenu}>
